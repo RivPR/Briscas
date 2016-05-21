@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,8 @@ import entities.HighScores;
 public abstract class BriscasDBDAO implements BriscasDAO {
 	private Suit life;
 	private Deck gameDeck;
+	private HashMap<Integer, Card> playerHand;
+	private HashMap<Integer, Card> dealerHand;
  
 	
 	@PersistenceContext
@@ -158,8 +161,35 @@ public abstract class BriscasDBDAO implements BriscasDAO {
 		this.life = life;
 	}
 	
-	//AI process
+	@Override
+	public HashMap<Integer, Card> playerHand(Card card1, Card card2, Card card3){
+		playerHand.put(1, card1);
+		playerHand.put(2, card2);
+		playerHand.put(3, card3);
+		return playerHand;
+	}
+	@Override
+	public HashMap<Integer, Card> dealerHand(Card card1, Card card2, Card card3){
+		dealerHand.put(1, card1);
+		dealerHand.put(2, card2);
+		dealerHand.put(3, card3);
+		return dealerHand;
+	}
 	
+	//AI process
+	@Override
+	public Card throwLowestCard(Card card){
+		ArrayList<Card> cards = new ArrayList<Card>(dealerHand.values());
+		int number = 15;
+		Card cardToPlay = new Card();
+			for(int i = 0; i < cards.size(); i++) {
+				if(number > getValue(cards.get(i)) ) {
+					number = getValue(cards.get(i));
+					cardToPlay = cards.get(i);
+				}
+			}
+			return cardToPlay;		
+	}
 	
 
 }

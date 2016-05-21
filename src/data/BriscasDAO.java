@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import data.Deck.Suit;
@@ -25,5 +26,13 @@ public interface BriscasDAO {
 	boolean checkWhoHasHigher(Card card1, Card card2);
 
 	int getPoints(Card card);
+
+	Card throwLowestCard(Card card);
+
+	HashMap<Integer, Card> playerHand(Card card1, Card card2, Card card3);
+
+	HashMap<Integer, Card> dealerHand(Card card1, Card card2, Card card3);
+	
+	//AI Process
 	
 }

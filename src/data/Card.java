@@ -10,6 +10,10 @@ public class Card implements Comparable<Card>{
 		suit = s;
 	}
 	
+	public Card() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Deck.Rank getRank(){
 		return rank;
 	}
