@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-	public List<Card> deck;
+	public ArrayList<Card> deck;
 	
 	public void createDeck(){
 		deck = new ArrayList<>(40);
@@ -16,10 +16,9 @@ public class Deck {
 			}
 		}
 		Collections.shuffle(deck);
-		
 		System.out.println(deck.toString());
-	
 	}
+	
 	public enum Rank {
 		ONE(11), TWO(0), THREE(10), FOUR(0), FIVE(0), SIX(0), SEVEN(0), TEN(2), ELEVEN(3), TWELVE(4);
 		private int numVal;
@@ -32,6 +31,7 @@ public class Deck {
 			return numVal;
 		}
 	}
+	
 	public enum Suit {
 		CHALICE, SPADE, CLUB, COIN
 	}
