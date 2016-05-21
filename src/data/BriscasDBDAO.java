@@ -1,5 +1,8 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -7,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import data.Deck.Rank;
 import data.Deck.Suit;
+import entities.HighScores;
 
 @Transactional
 public class BriscasDBDAO implements BriscasDAO {
@@ -51,6 +55,18 @@ public class BriscasDBDAO implements BriscasDAO {
 			break;
 		}
 		return value;
+	}
+
+	@Override
+	public Suit getLife(Suit suit) {
+		
+		return null;					
+	}
+
+	@Override
+	public List<HighScores> hs() {
+		List<HighScores> hs = em.createQuery("SELECT * FROM HighScores ORDER BY score DESC LIMIT 10", HighScores.class).getResultList();
+		return hs;
 	}
 
 }

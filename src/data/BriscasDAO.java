@@ -1,6 +1,8 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import entities.HighScores;
 
 public interface BriscasDAO {
@@ -11,6 +13,6 @@ public interface BriscasDAO {
 	
 	public Deck.Suit getLife(Deck.Suit suit);
 	
-	public ArrayList<HighScores> hs();
+	public List<HighScores> hs();
 	
 }
