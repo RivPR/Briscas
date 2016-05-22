@@ -17,8 +17,8 @@ import entities.HighScores;
 public class BriscasDBDAO implements BriscasDAO {
 	private Suit life;
 	private Deck gameDeck;
-	private HashMap<Integer, Card> playerHand;
-	private HashMap<Integer, Card> dealerHand;
+	private ArrayList<Card> playerHand;
+	private ArrayList<Card> dealerHand;
 	private ArrayList<Card> playerPile;
 	private ArrayList<Card> dealerPile;
 	private int playerTotal;
@@ -167,20 +167,20 @@ public class BriscasDBDAO implements BriscasDAO {
 	}
 	
 	@Override
-	public HashMap<Integer, Card> playerHand(Card card1, Card card2, Card card3){
+	public ArrayList<Card> playerHand(Card card1, Card card2, Card card3){
 		System.out.println(card1.toString());
-		playerHand = new HashMap<Integer, Card>();
-		playerHand.put(0, card1);
-		playerHand.put(1, card2);
-		playerHand.put(2, card3);
+		playerHand = new ArrayList<Card>();
+		playerHand.add(0, card1);
+		playerHand.add(1, card2);
+		playerHand.add(2, card3);
 		return playerHand;
 	}
 	@Override
-	public HashMap<Integer, Card> dealerHand(Card card1, Card card2, Card card3){
-		dealerHand = new HashMap<Integer, Card>();
-		dealerHand.put(0, card1);
-		dealerHand.put(1, card2);
-		dealerHand.put(2, card3);
+	public ArrayList<Card> dealerHand(Card card1, Card card2, Card card3){
+		dealerHand = new ArrayList<Card>();
+		dealerHand.add(0, card1);
+		dealerHand.add(1, card2);
+		dealerHand.add(2, card3);
 		return dealerHand;
 	}
 	//adds the total of point of the hands played
@@ -202,7 +202,7 @@ public class BriscasDBDAO implements BriscasDAO {
 	//AI process
 	@Override
 	public Card throwLowestCard(Card card){
-		ArrayList<Card> cards = new ArrayList<Card>(dealerHand.values());
+		ArrayList<Card> cards = dealerHand;
 		int number = 15;
 		Card cardToPlay = new Card();
 			for(int i = 0; i < cards.size(); i++) {
@@ -239,19 +239,19 @@ public class BriscasDBDAO implements BriscasDAO {
 		this.gameDeck = gameDeck;
 	}
 
-	public HashMap<Integer, Card> getPlayerHand() {
+	public ArrayList<Card> getPlayerHand() {
 		return playerHand;
 	}
 
-	public void setPlayerHand(HashMap<Integer, Card> playerHand) {
+	public void setPlayerHand(ArrayList<Card> playerHand) {
 		this.playerHand = playerHand;
 	}
 
-	public HashMap<Integer, Card> getDealerHand() {
+	public ArrayList<Card> getDealerHand() {
 		return dealerHand;
 	}
 
-	public void setDealerHand(HashMap<Integer, Card> dealerHand) {
+	public void setDealerHand(ArrayList<Card> dealerHand) {
 		this.dealerHand = dealerHand;
 	}
 

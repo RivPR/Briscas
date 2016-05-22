@@ -27,9 +27,9 @@ public interface BriscasDAO {
 
 	Card throwLowestCard(Card card);
 
-	HashMap<Integer, Card> playerHand(Card card1, Card card2, Card card3);
+	ArrayList<Card> playerHand(Card card1, Card card2, Card card3);
 
-	HashMap<Integer, Card> dealerHand(Card card1, Card card2, Card card3);
+	ArrayList<Card> dealerHand(Card card1, Card card2, Card card3);
 
 	boolean checkPointValueOfPlayedCard(Card card);
 

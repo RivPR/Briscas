@@ -17,10 +17,10 @@ public class BriscasController {
 
 	@Autowired
 	public BriscasDBDAO dao;
-	
+	//initial dealing of cards
 	@ResponseBody
-	@RequestMapping("deal")
-	public HashMap<Integer, Card> dealCards(){
+	@RequestMapping("dealPlayer")
+	public ArrayList<Card> dealCardsPlayer(){
 		Deck gameDeck = dao.getDeck();
 		Card card1 = gameDeck.deck.get(0);
 		gameDeck.deck.remove(0);
@@ -28,17 +28,20 @@ public class BriscasController {
 		gameDeck.deck.remove(0);
 		Card card3 = gameDeck.deck.get(0);
 		gameDeck.deck.remove(0);
-		Card card4 = gameDeck.deck.get(0);
-		gameDeck.deck.remove(0);
-		Card card5 = gameDeck.deck.get(0);
-		gameDeck.deck.remove(0);
-		Card card6 = gameDeck.deck.get(0);
-		gameDeck.deck.remove(0);
-		HashMap<Integer, Card> playerHand = dao.playerHand(card1, card3, card5);
-		HashMap<Integer, Card> dealerHand = dao.dealerHand(card2, card4, card6);
-		ArrayList<HashMap<Integer, Card>> dealtCards = new ArrayList<>();
-		dealtCards.add(playerHand);
-		dealtCards.add(dealerHand);
+		ArrayList<Card> playerHand = dao.playerHand(card1, card2, card3);
 		return playerHand;
+	}
+	@ResponseBody
+	@RequestMapping("dealDealer")
+	public ArrayList<Card> dealCardsDealer(){
+		Deck gameDeck = dao.getDeck();
+		Card card1 = gameDeck.deck.get(0);
+		gameDeck.deck.remove(0);
+		Card card2 = gameDeck.deck.get(0);
+		gameDeck.deck.remove(0);
+		Card card3 = gameDeck.deck.get(0);
+		gameDeck.deck.remove(0);
+		ArrayList<Card> dealerHand = dao.dealerHand(card1, card2, card3);
+		return dealerHand;
 	}
 }
