@@ -13,15 +13,13 @@ public interface BriscasDAO {
 	
 	public int getValue(Card card);
 	
-	public Deck.Suit getLife(Deck.Suit suit);
+	public Suit getLife();
 	
 	public List<HighScores> getTopTen();
 
 	boolean checkLife(Suit suit);
 
 	Card drawCard(Deck gameDeck);
-
-	boolean checkHigher(Card card1, Card card2);
 
 	boolean checkWhoHasHigher(Card card1, Card card2);
 

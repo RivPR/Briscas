@@ -16,11 +16,11 @@ import data.Deck;
 public class BriscasController {
 
 	@Autowired
-	private BriscasDBDAO dao;
+	public BriscasDBDAO dao;
 	
 	@ResponseBody
 	@RequestMapping("deal")
-	public ArrayList<HashMap<Integer, Card>> dealCards(){
+	public HashMap<Integer, Card> dealCards(){
 		Deck gameDeck = dao.getDeck();
 		Card card1 = gameDeck.deck.get(0);
 		gameDeck.deck.remove(0);
@@ -39,6 +39,6 @@ public class BriscasController {
 		ArrayList<HashMap<Integer, Card>> dealtCards = new ArrayList<>();
 		dealtCards.add(playerHand);
 		dealtCards.add(dealerHand);
-		return dealtCards;
+		return playerHand;
 	}
 }

@@ -14,7 +14,7 @@ import data.Deck.Suit;
 import entities.HighScores;
 
 @Transactional
-public abstract class BriscasDBDAO implements BriscasDAO {
+public class BriscasDBDAO implements BriscasDAO {
 	private Suit life;
 	private Deck gameDeck;
 	private HashMap<Integer, Card> playerHand;
@@ -168,16 +168,19 @@ public abstract class BriscasDBDAO implements BriscasDAO {
 	
 	@Override
 	public HashMap<Integer, Card> playerHand(Card card1, Card card2, Card card3){
-		playerHand.put(1, card1);
-		playerHand.put(2, card2);
-		playerHand.put(3, card3);
+		System.out.println(card1.toString());
+		playerHand = new HashMap<Integer, Card>();
+		playerHand.put(0, card1);
+		playerHand.put(1, card2);
+		playerHand.put(2, card3);
 		return playerHand;
 	}
 	@Override
 	public HashMap<Integer, Card> dealerHand(Card card1, Card card2, Card card3){
-		dealerHand.put(1, card1);
-		dealerHand.put(2, card2);
-		dealerHand.put(3, card3);
+		dealerHand = new HashMap<Integer, Card>();
+		dealerHand.put(0, card1);
+		dealerHand.put(1, card2);
+		dealerHand.put(2, card3);
 		return dealerHand;
 	}
 	//adds the total of point of the hands played
@@ -283,6 +286,10 @@ public abstract class BriscasDBDAO implements BriscasDAO {
 	public void setDealerTotal(int dealerTotal) {
 		this.dealerTotal = dealerTotal;
 	}
+
+
+
+
 
 	
 
