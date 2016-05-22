@@ -19,6 +19,11 @@ public abstract class BriscasDBDAO implements BriscasDAO {
 	private Deck gameDeck;
 	private HashMap<Integer, Card> playerHand;
 	private HashMap<Integer, Card> dealerHand;
+	private ArrayList<Card> playerPile;
+	private ArrayList<Card> dealerPile;
+	private int playerTotal;
+	private int dealerTotal;
+	
  
 	
 	@PersistenceContext
@@ -175,6 +180,21 @@ public abstract class BriscasDBDAO implements BriscasDAO {
 		dealerHand.put(3, card3);
 		return dealerHand;
 	}
+	//adds the total of point of the hands played
+	@Override
+	public void totalPointsHand(Card card1, Card card2){
+		boolean result = checkWhoHasHigher(card1, card2);
+		if(result==true){
+			this.dealerTotal = ( getPoints(card1) + getPoints(card2) );
+			dealerPile.add(card1);
+			dealerPile.add(card2);
+		}else if(result==false){
+			this.playerTotal = ( getPoints(card1) + getPoints(card2) );
+			playerPile.add(card1);
+			playerPile.add(card2);
+		}
+		
+	}
 	
 	//AI process
 	@Override
@@ -183,13 +203,87 @@ public abstract class BriscasDBDAO implements BriscasDAO {
 		int number = 15;
 		Card cardToPlay = new Card();
 			for(int i = 0; i < cards.size(); i++) {
-				if(number > getValue(cards.get(i)) ) {
-					number = getValue(cards.get(i));
-					cardToPlay = cards.get(i);
+				if(cards.get(i).getSuit()==life){
+					if(number > (getValue(cards.get(i)) + 12) ) {
+						number = getValue(cards.get(i));
+						cardToPlay = cards.get(i);
+					}
+				}else if(cards.get(i).getSuit() != life){
+					if(number > getValue(cards.get(i)) ) {
+						number = getValue(cards.get(i));
+						cardToPlay = cards.get(i);
+					}
+					
 				}
 			}
 			return cardToPlay;		
 	}
+	//method checks if the card on play has any value
+	@Override
+	public boolean checkPointValueOfPlayedCard(Card card){
+		boolean result = false;
+		if(getPoints(card) >= 2){
+			result = true;
+		}
+		return result;
+	}
+
+	public Deck getGameDeck() {
+		return gameDeck;
+	}
+
+	public void setGameDeck(Deck gameDeck) {
+		this.gameDeck = gameDeck;
+	}
+
+	public HashMap<Integer, Card> getPlayerHand() {
+		return playerHand;
+	}
+
+	public void setPlayerHand(HashMap<Integer, Card> playerHand) {
+		this.playerHand = playerHand;
+	}
+
+	public HashMap<Integer, Card> getDealerHand() {
+		return dealerHand;
+	}
+
+	public void setDealerHand(HashMap<Integer, Card> dealerHand) {
+		this.dealerHand = dealerHand;
+	}
+
+	public ArrayList<Card> getPlayerPile() {
+		return playerPile;
+	}
+
+	public void setPlayerPile(ArrayList<Card> playerPile) {
+		this.playerPile = playerPile;
+	}
+
+	public ArrayList<Card> getDealerPile() {
+		return dealerPile;
+	}
+
+	public void setDealerPile(ArrayList<Card> dealerPile) {
+		this.dealerPile = dealerPile;
+	}
+
+	public int getPlayerTotal() {
+		return playerTotal;
+	}
+
+	public void setPlayerTotal(int playerTotal) {
+		this.playerTotal = playerTotal;
+	}
+
+	public int getDealerTotal() {
+		return dealerTotal;
+	}
+
+	public void setDealerTotal(int dealerTotal) {
+		this.dealerTotal = dealerTotal;
+	}
+
 	
 
 }

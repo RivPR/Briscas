@@ -7,7 +7,7 @@ import java.util.List;
 public class Deck {
 	public ArrayList<Card> deck;
 	
-	public void createDeck(){
+	public ArrayList<Card> createDeck(){
 		deck = new ArrayList<>(40);
 		
 		for (Suit s : Suit.values()){
@@ -17,6 +17,7 @@ public class Deck {
 		}
 		Collections.shuffle(deck);
 		System.out.println(deck.toString());
+		return deck;
 	}
 	
 	public enum Rank {

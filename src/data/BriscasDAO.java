@@ -32,6 +32,10 @@ public interface BriscasDAO {
 	HashMap<Integer, Card> playerHand(Card card1, Card card2, Card card3);
 
 	HashMap<Integer, Card> dealerHand(Card card1, Card card2, Card card3);
+
+	boolean checkPointValueOfPlayedCard(Card card);
+
+	void totalPointsHand(Card card1, Card card2);
 	
 	//AI Process
 	
