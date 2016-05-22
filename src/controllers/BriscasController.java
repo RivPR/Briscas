@@ -17,6 +17,7 @@ public class BriscasController {
 
 	@Autowired
 	public BriscasDBDAO dao;
+	
 	//initial dealing of cards
 	@ResponseBody
 	@RequestMapping("dealPlayer")
@@ -44,4 +45,5 @@ public class BriscasController {
 		ArrayList<Card> dealerHand = dao.dealerHand(card1, card2, card3);
 		return dealerHand;
 	}
+	//play a single card mechanics
 }

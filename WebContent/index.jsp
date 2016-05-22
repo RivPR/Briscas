@@ -15,9 +15,11 @@
 	
 </canvas>
 
+	<div id="startDiv">
 	<form action="/Briscas/rest/deal">
 	<button id="startButton">Play!</button>
 	</form>
+	</div>
 	
 	<script src='./js/app.js'></script>
 </body>
