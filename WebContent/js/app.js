@@ -28,8 +28,9 @@ var getInitialCards = function(e) {
 				var cardImageph = getCardImage(val);
 				var cardImage = document.createElement('IMG');
 				cardImage.src = (cardImageph);
+				cardImage.number = (ind);
 				playerCard.push(cardImage);
-				cardsToCanvasPlayer(cardImageph, val);
+				cardsToCanvasPlayer(cardImageph, val, ind);
 				// to display cards to browser
 				document.body.appendChild(cardImage);
 				document.body.appendChild(cardSuit);
@@ -139,11 +140,12 @@ var cardsToCanvasLife = function(name, card) {
 
 var counter = 250;
 var counter2 = 955;
-var cardsToCanvasPlayer = function(name, card) {
+var cardsToCanvasPlayer = function(name, card, number) {
 
 	var cx = document.getElementById('briscasCanvas').getContext('2d');
 	var img = document.createElement('img');
 	img.src = name;
+	img.number = number;
 	// console.log(name);
 	var spriteW = 250, spriteH = 350;
 
@@ -208,21 +210,53 @@ window.onclick = function(e) {
 		console.log('here ' + cX, cY);
 
 		if ((1 == cX) && (2 == cY || 1 == cY)) {
-
+			playCard(0);
 			console.log('first card');
 		} else if ((2 == cX) && (2 == cY || 1 == cY)) {
+			playCard(1);
 
 			console.log('second card');
 		} else if ((3 == cX) && (2 == cY || 1 == cY)) {
+			playCard(2);
 
 			console.log('third card');
 		}
 
 	}
 }
+var playCard = function(number){
+
+
+	var xhr4 = new XMLHttpRequest();
+	var cardNumberToUse = 'rest/playCard/' + number ;
+	xhr4.open('GET', cardNumberToUse);
+	
+	xhr4.onreadystatechange = function() {
+		
+		if (xhr4.status < 400 && xhr4.readyState === 4) {
+			
+		
+			console.log(xhr4.responseText);
+			var cx = document.getElementById('briscasCanvas').getContext('2d');
+			cx.font = "50px Georgia";
+			cx.fillText((xhr4.responseText), 250, 250);
+			
+			
+
+		} else if (xhr4.readyState === 4 && xhr4.status >= 400) {
+			console.error('ERROR!!!!');
+		}
+	};
+	// delete start button
+
+	xhr4.send(null);
+	
+}
 
 function draw() {
-
+	var c=document.getElementById("briscasCanvas");
+	var ctx=c.getContext("2d");
+	ctx.clearRect(250,250, 300, 90);
 }
 
 var nameOfCards = function(cardName, counter) {

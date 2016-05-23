@@ -25,7 +25,6 @@ public interface BriscasDAO {
 
 	int getPoints(Card card);
 
-	Card throwLowestCard(Card card);
 
 	ArrayList<Card> playerHand(Card card1, Card card2, Card card3);
 
@@ -34,6 +33,10 @@ public interface BriscasDAO {
 	boolean checkPointValueOfPlayedCard(Card card);
 
 	void totalPointsHand(Card card1, Card card2);
+
+	Card throwLowestCard();
+
+	Card throwLifeOrHigh();
 	
 	//AI Process
 	

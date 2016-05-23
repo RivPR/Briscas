@@ -96,6 +96,7 @@ public class BriscasDBDAO implements BriscasDAO {
 	@Override
 	public int getValue(Card card){
 		Rank value = card.getRank();
+		System.out.println("this is the value: " + value);
 		int valueNum=0;
 		switch (value) {
 		case ONE:
@@ -171,7 +172,7 @@ public class BriscasDBDAO implements BriscasDAO {
 	
 	@Override
 	public ArrayList<Card> playerHand(Card card1, Card card2, Card card3){
-		System.out.println(card1.toString());
+		
 		playerHand = new ArrayList<Card>();
 		playerHand.add(0, card1);
 		playerHand.add(1, card2);
@@ -204,7 +205,7 @@ public class BriscasDBDAO implements BriscasDAO {
 	
 	//AI process
 	@Override
-	public Card throwLowestCard(Card card){
+	public Card throwLowestCard(){
 		ArrayList<Card> cards = dealerHand;
 		int number = 15;
 		Card cardToPlay = new Card();
@@ -223,6 +224,28 @@ public class BriscasDBDAO implements BriscasDAO {
 				}
 			}
 			return cardToPlay;		
+	}
+	@Override
+	public Card throwLifeOrHigh(){
+		ArrayList<Card> cards = dealerHand;
+		Card cardtoPlay = new Card();
+		int number = 15;
+			for(int i = 0 ; i<cards.size();i++){
+				if(cards.get(i).getSuit()==life){
+					if(number > (getValue(cards.get(i)) + 12) ) {
+						number = getValue(cards.get(i));
+						cardtoPlay = cards.get(i);
+					}
+				}else if(cards.get(i).getSuit() != life){
+					if(number < getValue(cards.get(i)) ) {
+						number = getValue(cards.get(i));
+						cardtoPlay = cards.get(i);
+					}
+					
+				}
+			}
+		
+		return cardtoPlay;
 	}
 	//method checks if the card on play has any value
 	@Override
