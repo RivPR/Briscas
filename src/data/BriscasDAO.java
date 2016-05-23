@@ -13,7 +13,7 @@ public interface BriscasDAO {
 	
 	public int getValue(Card card);
 	
-	public Suit getLife();
+	public Card getLife();
 	
 	public List<HighScores> getTopTen();
 

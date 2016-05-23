@@ -16,6 +16,7 @@ import entities.HighScores;
 @Transactional
 public class BriscasDBDAO implements BriscasDAO {
 	private Suit life;
+	private Card lifeCard;
 	private Deck gameDeck;
 	private ArrayList<Card> playerHand;
 	private ArrayList<Card> dealerHand;
@@ -158,12 +159,14 @@ public class BriscasDBDAO implements BriscasDAO {
 		return result;
 	}
 	
-	public Suit getLife() {
-		return life;
+	public Card getLife() {
+		return lifeCard;
 	}
 
-	public void setLife(Suit life) {
-		this.life = life;
+	public void setLife(Card life) {
+		this.life = life.getSuit();
+		this.lifeCard = life;
+		
 	}
 	
 	@Override
