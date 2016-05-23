@@ -16,7 +16,7 @@ public class Deck {
 			}
 		}
 		Collections.shuffle(deck);
-		System.out.println(deck.toString());
+		
 		return deck;
 	}
 	

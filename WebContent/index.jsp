@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/main.css" rel="stylesheet">
-<title>A Page</title>
+<title>Briscas!</title>
 </head>
 <body>
 <h3>WebApp?</h3>
 
-<canvas id="briscasCanvas">
+<canvas id="briscasCanvas" height="850" width="1300">
 	
 	
 </canvas>

@@ -1,8 +1,10 @@
 @CHARSET "UTF-8";
 
 #briscasCanvas{
-	height: 800px;
-	width: 700px;
+  	position: relative;
+  	z-index: 1;
+	background: #00a651;
+	display: inline-block;
 }
 #dealers{
 	color: red;
